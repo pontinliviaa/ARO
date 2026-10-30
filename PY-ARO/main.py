@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 # CONEXÃO COM O BANCO
 host = "localhost"
-database = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "BANCO.FDB"))
+database = r"C:\Users\Aluno\Downloads\ARO-main\ARO-main\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 
