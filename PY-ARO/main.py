@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 # CONEXÃO COM O BANCO
 host = "localhost"
-database = r"C:\Users\Aluno\Desktop\ARO\BANCO.FDB"
+database = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "BANCO.FDB"))
 user = "SYSDBA"
 password = "sysdba"
 
@@ -1160,8 +1160,8 @@ def simular_emprestimo():
         try:
             valor = valor_positivo(request.form.get("valor", ""))
             quantidade = int(request.form.get("quantidade", ""))
-            if valor > Decimal("1000000") or quantidade < 1 or quantidade > 60:
-                raise ValueError("Informe até R$ 1.000.000 e de 1 a 60 parcelas.")
+            if valor > Decimal("1000000") or quantidade < 1:
+                raise ValueError("Informe até R$ 1.000.000 e uma quantidade inteira de parcelas maior que zero.")
             simulacao = calcular_emprestimo(cursor, valor, quantidade)
             session["simulacao"] = {"valor": str(valor), "quantidade": quantidade,
                                     "percentual": str(simulacao["percentual"]), "codigo": uuid4().hex}
